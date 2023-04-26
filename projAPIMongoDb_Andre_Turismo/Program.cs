@@ -12,7 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //Configuration Singleton and AppSetting parameters.
-builder.Services.Configure<Andre_TurismoSettings>(builder.Configuration.GetSection("ProjMDSettings"));
+builder.Services.Configure<Andre_TurismoSettings>(builder.Configuration.GetSection("Andre_TurismoSettings"));
 builder.Services.AddSingleton<IAndre_TurismoSettings>(s => s.GetRequiredService<IOptions<Andre_TurismoSettings>>().Value);
 builder.Services.AddSingleton<CustomerService>();
 builder.Services.AddSingleton<AddressService>();
