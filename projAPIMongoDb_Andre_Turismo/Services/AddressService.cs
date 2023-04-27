@@ -21,7 +21,7 @@ namespace projAPIMongoDb_Andre_Turismo.Services
 
         public Address Get(string id) => _address.Find<Address>(c => c.Id == id).FirstOrDefault();
 
-        public void Create(Address address)
+        public Address Create(Address address)
         {
             var city = _city.Find(c => c.Id == address.City.Id).FirstOrDefault();
             if (city == null)
@@ -30,11 +30,13 @@ namespace projAPIMongoDb_Andre_Turismo.Services
                 address.City = city;
 
             _address.InsertOne(address);
+            return address;
         }
 
         public void Update(string id, Address address) => _address.ReplaceOne(a => a.Id == id, address);
 
         public void Delete(string id) => _address.DeleteOne(a => a.Id == id);
+
         public void Delete(Address address) => _address.DeleteOne(a => a.Id == address.Id);
 
     }
